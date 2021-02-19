@@ -109,6 +109,11 @@ export class LoginComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.uiService.loadingStateChanged.subscribe(
+      loadState => {
+        this.loadingState = loadState;
+      }
+    );
   }
   login(logForm): void {
     if (logForm.invalid){

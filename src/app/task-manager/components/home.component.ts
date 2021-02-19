@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
 import {map, shareReplay} from 'rxjs/operators';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -106,8 +107,16 @@ export class HomeComponent implements OnInit{
       map(result => result.matches),
       shareReplay()
     );
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService) {
   }
   ngOnInit(): void {
+    const {username} = JSON.parse(localStorage.getItem('userData')) ?
+      JSON.parse(localStorage.getItem('userData')) : ' ';
+    this.username = username;
+  }
+  logout(): void {
+    this.authService.logout();
   }
 }

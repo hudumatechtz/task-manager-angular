@@ -13,7 +13,7 @@ import {TaskService} from '../../services/task.service';
               <h3>{{ totalTasks }}</h3>
               <div>
                 <mat-icon>article</mat-icon>
-                Total Tasks
+                All Tasks
               </div>
             </mat-card>
           </div>
@@ -25,7 +25,7 @@ import {TaskService} from '../../services/task.service';
               </h3>
               <div *ngIf="!loadingState">
                 <mat-icon style="">queue</mat-icon>
-                <span style="">Task on Queue</span>
+                <span style="">Queued Tasks</span>
               </div>
             </mat-card>
           </div>

@@ -52,6 +52,12 @@ import {AuthService} from '../../services/auth.service';
           </div>
         </mat-toolbar>
         <router-outlet></router-outlet>
+        <div style="position: absolute; bottom: 50px; right: 50px; background: var(--color-theme);
+         color: var(--light-theme); border-radius: 50%; height: 70px; width: 70px">
+          <a routerLink="/user/tasks/add-task" mat-icon-button>
+            <mat-icon style="margin-top: 23px; font-size: 40px; margin-right: 15px">add</mat-icon>
+          </a>
+        </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
@@ -69,6 +75,13 @@ import {AuthService} from '../../services/auth.service';
       position: sticky;
       top: 0;
       z-index: 1;
+    }
+    .mat-icon-button {
+      height: 70px !important;
+      width: 70px !important;
+    }
+    .mat-icon-button:hover {
+      color: var(--light-theme);
     }
     mat-sidenav{
       height: 100vh;

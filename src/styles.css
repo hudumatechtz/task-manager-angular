@@ -21,6 +21,9 @@ a {
   text-decoration: none !important;
   cursor: pointer !important;
 }
+button {
+  height: 50px;
+}
 mat-icon {
   vertical-align: middle;
 }

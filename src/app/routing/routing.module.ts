@@ -13,6 +13,7 @@ import {TasksComponent} from '../task-manager/components/tasks.component';
 import {TaskManagerComponent} from '../task-manager/components/task-manager.component';
 import {TaskFormComponent} from '../task-manager/components/task-form.component';
 import {TaskComponent} from '../task-manager/components/task.component';
+import {EditTaskComponent} from '../task-manager/components/edit-task.component';
 
 const routes: Routes = [
   {path: '', component: TaskManagerComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path: 'tasks', component: TasksComponent,
         children: [
           {path: '', component: TotalTasksComponent, pathMatch: 'full'},
+          {path: 'edit-task', component: EditTaskComponent},
           {path: 'task', component: TaskComponent},
           {path: 'add-task', component: TaskFormComponent},
           {path: 'ongoing-tasks', component: OngoingTasksComponent},

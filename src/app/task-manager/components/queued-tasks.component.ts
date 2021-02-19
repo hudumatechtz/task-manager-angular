@@ -18,7 +18,7 @@ import {Component} from '@angular/core';
         <tr>
           <th style="width: 10%">S/N</th>
           <th style="width: 80%">Tasks</th>
-          <th style="width: 10%">Edit</th>
+          <th style="width: 10%">Actions</th>
         </tr>
         </thead>
         <tbody *ngFor="let queuedTask of queuedTasks">

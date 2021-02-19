@@ -156,4 +156,30 @@ export class TaskService {
         }
       );
   }
+
+  delete(taskId: any, value?): void {
+    const options = this.getOptions();
+    console.log(taskId);
+    this.http.delete(this.url + `/delete/${taskId}`, options)
+      .subscribe(
+        (response: any) => {
+          this.getQueue();
+          if (value === 1){
+            this.getQueue();
+          }
+          if (value === 2){
+            this.getOnGoing();
+          }
+          if (value === 3){
+            this.getCompleted();
+          }
+          return this.uiService.showSnackbar(response.message);
+        },
+        error => {
+          console.log(error);
+          this.uiService.loadingStateChanged.next(false);
+          error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        }
+      );
+  }
 }

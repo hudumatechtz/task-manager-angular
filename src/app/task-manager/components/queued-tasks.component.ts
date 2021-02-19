@@ -27,7 +27,7 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </thead>
         <tbody *ngFor="let queuedTask of queuedTasks; let i = index">
-        <tr>
+        <tr [ngClass]="{'hide': id === queuedTask.id}">
           <td>{{ 1+i}}</td>
           <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
             <div fxLayout="column">
@@ -47,7 +47,7 @@ import {UiService} from '../../services/ui.service';
                 </a>
               </div>
               <div style="background: var(--danger-theme); border-radius: 4px; color: var(--light-theme)">
-                <a mat-icon-button>
+                <a mat-icon-button (click)="delete(queuedTask.id)">
                   <mat-icon>delete</mat-icon>
                 </a>
               </div>
@@ -78,12 +78,10 @@ import {UiService} from '../../services/ui.service';
 })
 export class QueuedTasksComponent implements OnInit{
   checked = false;
-  queuedTasks = [
-    {
-      task: 'I will do programming',
-    }
-  ];
-    loadingState = false;
+  queuedTasks: any = [];
+  loadingState = false;
+  display = true;
+  id = 0;
     constructor(
       private taskService: TaskService,
       private uiService: UiService
@@ -102,4 +100,9 @@ export class QueuedTasksComponent implements OnInit{
         }
       );
     }
+
+  delete(id: any): void{
+    const value = 1;
+    this.taskService.delete(id, value);
+  }
 }

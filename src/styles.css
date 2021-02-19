@@ -46,3 +46,6 @@ mat-spinner svg circle {
 h3 {
   margin-bottom: 0 !important;
 }
+.hide{
+  display: none !important;
+}

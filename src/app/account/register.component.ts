@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Auth, AuthService} from '../services/auth.service';
+import {UiService} from '../services/ui.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
           <mat-label>Enter Your Username</mat-label>
           <label for="userName"></label>
           <input id="userName" type="text" matInput placeholder="Username"
-                 ngModel name="userName"
+                 ngModel name="username"
                  required>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -102,9 +104,28 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   loadingState = false;
   hide = true;
-  constructor(){}
+
+  constructor(
+    private uiService: UiService,
+    private authService: AuthService,
+  ) {
+  }
   ngOnInit(): void {
+    this.uiService.loadingStateChanged.subscribe(
+      loadState => {
+        this.loadingState = loadState;
+      }
+    );
   }
   registerUser(userForm): void {
+    const {username, password} = userForm.value;
+    if (userForm.invalid){
+      return this.uiService.showSnackbar('FORM HAS ERRORS, CHECK AND REFILL');
+    }
+    const authData: Auth = {
+      username,
+      password
+    };
+    this.authService.register(authData);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {UiService} from '../services/ui.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +11,9 @@ import { Subscription } from 'rxjs';
         <h4 class="color-theme">LOGIN TO TASK MANAGER</h4>
         <mat-form-field appearance="outline">
           <mat-label>Your Username</mat-label>
-          <label for="email"></label>
-          <input id="email" type="email" matInput placeholder="email"
-                 ngModel name="email"
+          <label for="username"></label>
+          <input id="username" type="text" matInput placeholder="username"
+                 ngModel name="username"
                  required>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -102,10 +103,20 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
   hide = true;
   loadingState = false;
-  constructor(){}
+  constructor(
+    private uiService: UiService,
+    private authService: AuthService,
+  ){}
 
   ngOnInit(): void {
   }
   login(logForm): void {
+    if (logForm.invalid){
+      return this.uiService.showSnackbar('FORM HAS ERRORS, CHECK AND REFILL');
+    }
+    this.authService.login({
+      username: logForm.value.username,
+      password: logForm.value.password
+    });
   }
 }

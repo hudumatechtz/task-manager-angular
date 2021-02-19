@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {HomeComponent} from './task-manager/components/home.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {DashboardComponent} from './task-manager/components/dashboard.component';
@@ -24,6 +25,7 @@ import {CompletedTasksComponent} from './task-manager/components/completed-tasks
 import {QueuedTasksComponent} from './task-manager/components/queued-tasks.component';
 import {OngoingTasksComponent} from './task-manager/components/ongoing-tasks.component';
 import {TotalTasksComponent} from './task-manager/components/total-tasks.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {TotalTasksComponent} from './task-manager/components/total-tasks.compone
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -53,7 +56,8 @@ import {TotalTasksComponent} from './task-manager/components/total-tasks.compone
     LayoutModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

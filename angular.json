@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "task-manager-angular"
+  "defaultProject": "task-manager-angular",
+  "cli": {
+    "analytics": "542a5236-0805-4243-89df-103c08ac86ac"
+  }
 }

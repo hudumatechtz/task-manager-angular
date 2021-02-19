@@ -27,7 +27,7 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </thead>
         <tbody *ngFor="let onGoingTask of onGoingTasks; let i = index">
-        <tr>
+        <tr [ngClass]="{'hide': id === onGoingTask.id}">
           <td style="position: relative">
             <div fxLayout="row" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
               {{ 1+ i}}
@@ -40,7 +40,6 @@ import {UiService} from '../../services/ui.service';
               </div>
               <div fxLayout="row">
                 <mat-checkbox [(ngModel)]="checked" (click)="markOnCompleted(onGoingTask.id)"
-                              [ngClass]="{'hide': id === onGoingTask.id}"
                 >Mark Complete</mat-checkbox>
               </div>
             </div>
@@ -74,6 +73,9 @@ import {UiService} from '../../services/ui.service';
     }
     td {
       height: auto;
+    }
+    .hide{
+      display: none;
     }
     .task:hover {
       background: #ffffff;

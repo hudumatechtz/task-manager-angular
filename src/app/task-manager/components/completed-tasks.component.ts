@@ -40,7 +40,7 @@ import {UiService} from '../../services/ui.service';
                 </a>
               </div>
               <div style="background: var(--danger-theme); border-radius: 4px; color: var(--light-theme)">
-                <a mat-icon-button (click)="delete(taskId)">
+                <a mat-icon-button (click)="delete(completedTask.id)">
                   <mat-icon>delete</mat-icon>
                 </a>
               </div>

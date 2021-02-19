@@ -27,7 +27,7 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </thead>
         <tbody *ngFor="let queuedTask of queuedTasks; let i = index">
-        <tr>
+        <tr [ngClass]="{'hide': id === queuedTask.id}">
           <td>{{ 1+i}}</td>
           <td class="task" style="cursor: pointer">
             <div fxLayout="column">
@@ -36,7 +36,6 @@ import {UiService} from '../../services/ui.service';
               </div>
               <div fxLayout="row">
                 <mat-checkbox [(ngModel)]="checked" (click)="markOnGoing(queuedTask.id)"
-                              [ngClass]="{'hide': id === queuedTask.id}"
                 >Mark On Going</mat-checkbox>
               </div>
             </div>

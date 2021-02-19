@@ -13,7 +13,7 @@ import {Component} from '@angular/core';
                required [(ngModel)]="username">
         </mat-form-field>
         <button class="background-theme" style="color: var(--light-theme)" type="submit" mat-raised-button>
-          Update Your User Name
+          Update User Name
         </button>
       </form>
     </section>
@@ -21,7 +21,7 @@ import {Component} from '@angular/core';
   styles: [``]
 })
 export class AccountComponent {
-  username = 'Muneer';
+  username = 'Corama';
   constructor() {
   }
   submitChanges(editUser): void {

@@ -166,13 +166,16 @@ export class TaskService {
       .subscribe(
         (response: any) => {
           this.getQueue();
-          if (value === 1){
+          // tslint:disable-next-line:triple-equals
+          if (value == 1){
             this.getQueue();
           }
-          if (value === 2){
+          // tslint:disable-next-line:triple-equals
+          if (value == 2){
             this.getOnGoing();
           }
-          if (value === 3){
+          // tslint:disable-next-line:triple-equals
+          if (value == 3){
             this.getCompleted();
           }
           return this.uiService.showSnackbar(response.message);

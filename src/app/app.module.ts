@@ -32,6 +32,7 @@ import {TaskFormComponent} from './task-manager/components/task-form.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {TaskComponent} from './task-manager/components/task.component';
+import {EditTaskComponent} from './task-manager/components/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {TaskComponent} from './task-manager/components/task.component';
     TasksComponent,
     TaskManagerComponent,
     TaskFormComponent,
-    TaskComponent
+    TaskComponent,
+    EditTaskComponent
   ],
   imports: [
     CommonModule,

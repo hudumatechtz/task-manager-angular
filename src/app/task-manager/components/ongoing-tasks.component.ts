@@ -23,7 +23,7 @@ import {UiService} from '../../services/ui.service';
         <tr>
           <th style="width: 10%">S/N</th>
           <th style="width: 80%">Tasks</th>
-          <th style="width: 10%">Edit</th>
+          <th style="width: 10%">Action</th>
         </tr>
         </thead>
         <tbody *ngFor="let onGoingTask of onGoingTasks; let i = index">

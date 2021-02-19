@@ -24,7 +24,7 @@ import {UiService} from '../../services/ui.service';
           <th style="width: 10%">S/N</th>
           <th style="width: 65%">Task</th>
           <th style="width: 15%">Status</th>
-          <th style="width: 10%">Edit Or Delete</th>
+          <th style="width: 10%">Actions</th>
         </tr>
         </thead>
         <tbody *ngFor="let task of tasks; let i = index">

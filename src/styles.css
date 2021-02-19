@@ -2,6 +2,7 @@
 :root {
   --color-theme: #3f51b5;
   --light-theme: #ffffff;
+  --danger-theme: #df4759;
 }
 html, body {
   height: 100%;

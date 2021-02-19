@@ -16,22 +16,22 @@ import {map, shareReplay} from 'rxjs/operators';
           Task Manager
         </mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+          <a mat-list-item routerLink="/user/dashboard" routerLinkActive="active">
             <mat-icon matListIcon>dashboard</mat-icon>
             Dashboard
           </a>
-          <a mat-list-item routerLink="/tasks" routerLinkActive="active">
+          <a mat-list-item routerLink="/user/tasks" routerLinkActive="active">
             <mat-icon matListIcon>task</mat-icon>
             Tasks
           </a>
-          <a mat-list-item routerLink="/account" routerLinkActive="active">
+          <a mat-list-item routerLink="/user/account" routerLinkActive="active">
             <mat-icon matListIcon>account_circle</mat-icon>
             Tasks
           </a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content style="min-height: 100vh">
-        <mat-toolbar color="primary">
+        <mat-toolbar color="primary" fxLayout="row">
           <button
             type="button"
             aria-label="Toggle sidenav"
@@ -40,7 +40,15 @@ import {map, shareReplay} from 'rxjs/operators';
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Sidenav toggle icon">menu</mat-icon>
           </button>
-          <span>Task Manager System</span>
+          <div >
+            <div>
+              Task Manager System
+            </div>
+          </div>
+          <div style="margin-left: auto; color: white">
+            <span>{{username}}</span>
+            <mat-icon>account_circle</mat-icon>
+          </div>
         </mat-toolbar>
         <router-outlet></router-outlet>
       </mat-sidenav-content>
@@ -92,6 +100,7 @@ import {map, shareReplay} from 'rxjs/operators';
   `]
 })
 export class HomeComponent implements OnInit{
+  username = '';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),

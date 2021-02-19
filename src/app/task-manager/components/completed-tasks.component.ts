@@ -40,7 +40,7 @@ import {UiService} from '../../services/ui.service';
                 </a>
               </div>
               <div style="background: var(--danger-theme); border-radius: 4px; color: var(--light-theme)">
-                <a mat-icon-button>
+                <a mat-icon-button (click)="delete(taskId)">
                   <mat-icon>delete</mat-icon>
                 </a>
               </div>
@@ -92,4 +92,8 @@ export class CompletedTasksComponent implements OnInit{
       }
     );
 }
+  delete(taskId: any): void {
+    const value = 3;
+    this.taskService.delete(taskId, value);
+  }
 }

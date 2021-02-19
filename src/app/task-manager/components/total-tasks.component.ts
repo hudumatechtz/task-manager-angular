@@ -17,20 +17,20 @@ import {Component} from '@angular/core';
         <tr>
           <td>{{task.sn}}</td>
           <td class="task" style="cursor: pointer">
-            <span>
-              {{task.task}}
-            </span>
+            <span>{{task.task}}</span>
           </td>
-          <td class="edit-buttons" fxLayout="row" style="height: auto">
-            <div style="background: var(--color-theme); border-radius: 4px; color: var(--light-theme); margin-right: 10px">
-              <a mat-icon-button>
-                <mat-icon>edit</mat-icon>
-              </a>
-            </div>
-            <div style="background: var(--danger-theme); border-radius: 4px; color: var(--light-theme)">
-              <a mat-icon-button>
-                <mat-icon>delete</mat-icon>
-              </a>
+          <td class="edit-buttons" style="position: relative">
+            <div fxLayout="row" style="position: absolute; top: 50%; transform: translateY(-50%)">
+              <div style="background: var(--color-theme); border-radius: 4px; color: var(--light-theme); margin-right: 10px">
+                <a mat-icon-button>
+                  <mat-icon>edit</mat-icon>
+                </a>
+              </div>
+              <div style="background: var(--danger-theme); border-radius: 4px; color: var(--light-theme)">
+                <a mat-icon-button>
+                  <mat-icon>delete</mat-icon>
+                </a>
+              </div>
             </div>
           </td>
         </tr>
@@ -58,7 +58,7 @@ export class TotalTasksComponent {
   tasks = [
     {
       sn: 1,
-      task: 'I will go to school, I will go to school, I will go to school, I will go to school, I will go to school, I will go to school, I will go to school, I will go to school',
+      task: 'I will do programming',
     }
   ];
   constructor() {

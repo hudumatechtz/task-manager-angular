@@ -21,9 +21,8 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'tasks', component: TaskComponent,
         children: [
-          {path: '', redirectTo: 'total-tasks', pathMatch: 'full'},
+          {path: '', component: TotalTasksComponent, pathMatch: 'full'},
           {path: 'add-task', component: TaskFormComponent},
-          {path: 'total-tasks', component: TotalTasksComponent},
           {path: 'ongoing-tasks', component: OngoingTasksComponent},
           {path: 'queued-tasks', component: QueuedTasksComponent},
           {path: 'completed-tasks', component: CompletedTasksComponent}

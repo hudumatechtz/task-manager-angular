@@ -14,6 +14,7 @@ import {TaskManagerComponent} from '../task-manager/components/task-manager.comp
 import {TaskFormComponent} from '../task-manager/components/task-form.component';
 import {TaskComponent} from '../task-manager/components/task.component';
 import {EditTaskComponent} from '../task-manager/components/edit-task.component';
+import {AccountComponent} from '../account/account.component';
 
 const routes: Routes = [
   {path: '', component: TaskManagerComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
           {path: 'completed-tasks', component: CompletedTasksComponent}
         ]
       },
+      {path: 'account', component: AccountComponent}
     ]
   },
   {path: 'login', component: LoginComponent},

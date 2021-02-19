@@ -31,7 +31,7 @@ import {AuthService} from '../../services/auth.service';
           </a>
         </mat-nav-list>
       </mat-sidenav>
-      <mat-sidenav-content style="min-height: 100vh">
+      <mat-sidenav-content style="min-height: 100vh; position: unset">
         <mat-toolbar color="primary" fxLayout="row">
           <button
             type="button"

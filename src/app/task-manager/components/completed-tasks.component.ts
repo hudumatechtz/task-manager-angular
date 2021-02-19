@@ -35,7 +35,7 @@ import {UiService} from '../../services/ui.service';
           <td class="edit-buttons" style="position: relative">
             <div fxLayout="row" style="position: absolute; top: 50%; transform: translateY(-50%)">
               <div style="background: var(--color-theme); border-radius: 4px; color: var(--light-theme); margin-right: 10px">
-                <a mat-icon-button>
+                <a routerLink="/user/tasks/edit-task" mat-icon-button>
                   <mat-icon>edit</mat-icon>
                 </a>
               </div>
@@ -49,7 +49,8 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </tbody>
       </table>
-      <div *ngIf="!loadingState && completedTasks.length <= 0" fxLayoutAlign="center">
+      <div *ngIf="!loadingState && completedTasks.length <= 0" fxLayoutAlign="center"
+           style="border: 1px solid #D3D3D3; border-top: none; padding: 10px">
         <p>No Task Completed</p>
       </div>
     </section>

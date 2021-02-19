@@ -46,7 +46,7 @@ import {UiService} from '../../services/ui.service';
           <td class="edit-buttons" style="position: relative">
             <div fxLayout="row" style="position: absolute; top: 50%; transform: translateY(-50%)">
               <div style="background: var(--color-theme); border-radius: 4px; color: var(--light-theme); margin-right: 10px">
-                <a mat-icon-button>
+                <a routerLink="/user/tasks/edit-task" mat-icon-button>
                   <mat-icon>edit</mat-icon>
                 </a>
               </div>

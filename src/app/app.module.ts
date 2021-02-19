@@ -26,6 +26,8 @@ import {QueuedTasksComponent} from './task-manager/components/queued-tasks.compo
 import {OngoingTasksComponent} from './task-manager/components/ongoing-tasks.component';
 import {TotalTasksComponent} from './task-manager/components/total-tasks.component';
 import {HttpClientModule} from '@angular/common/http';
+import {TaskComponent} from './task-manager/components/task.component';
+import {TaskManagerComponent} from './task-manager/components/task-manager.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {HttpClientModule} from '@angular/common/http';
     CompletedTasksComponent,
     QueuedTasksComponent,
     OngoingTasksComponent,
-    TotalTasksComponent
+    TotalTasksComponent,
+    TaskComponent,
+    TaskManagerComponent
   ],
   imports: [
     CommonModule,

@@ -5,13 +5,28 @@ import { Routes, RouterModule } from '@angular/router';
 import {RegisterComponent} from '../account/register.component';
 import {HomeComponent} from '../task-manager/components/home.component';
 import {DashboardComponent} from '../task-manager/components/dashboard.component';
+import {TotalTasksComponent} from '../task-manager/components/total-tasks.component';
+import {OngoingTasksComponent} from '../task-manager/components/ongoing-tasks.component';
+import {QueuedTasksComponent} from '../task-manager/components/queued-tasks.component';
+import {CompletedTasksComponent} from '../task-manager/components/completed-tasks.component';
+import {TaskComponent} from '../task-manager/components/task.component';
+import {TaskManagerComponent} from '../task-manager/components/task-manager.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent,
+  {path: '', component: TaskManagerComponent},
+  {path: 'user', component: HomeComponent,
     children: [
-      {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+      {path: '', redirectTo: '/user/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'total-tasks', component: LoginComponent},
+      {path: 'tasks', component: TaskComponent,
+        children: [
+          {path: '', redirectTo: 'total-tasks', pathMatch: 'full'},
+          {path: 'total-tasks', component: TotalTasksComponent},
+          {path: 'ongoing-tasks', component: OngoingTasksComponent},
+          {path: 'queued-tasks', component: QueuedTasksComponent},
+          {path: 'completed-tasks', component: CompletedTasksComponent}
+        ]
+      },
     ]
   },
   {path: 'login', component: LoginComponent},

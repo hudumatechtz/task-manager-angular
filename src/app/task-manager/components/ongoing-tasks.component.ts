@@ -27,7 +27,7 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </thead>
         <tbody *ngFor="let onGoingTask of onGoingTasks; let i = index">
-        <tr [ngClass]="{'hide': true}">
+        <tr>
           <td style="position: relative">
             <div fxLayout="row" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
               {{ 1+ i}}
@@ -39,7 +39,9 @@ import {UiService} from '../../services/ui.service';
                 {{onGoingTask.task}}
               </div>
               <div fxLayout="row">
-                <mat-checkbox [(ngModel)]="checked">Mark Complete</mat-checkbox>
+                <mat-checkbox [(ngModel)]="checked" (click)="markOnCompleted(onGoingTask.id)"
+                              [ngClass]="{'hide': id === onGoingTask.id}"
+                >Mark Complete</mat-checkbox>
               </div>
             </div>
           </td>
@@ -73,10 +75,6 @@ import {UiService} from '../../services/ui.service';
     td {
       height: auto;
     }
-    .hide{
-      /*display: none;*/
-      background: green;
-    }
     .task:hover {
       background: #ffffff;
     }
@@ -90,9 +88,9 @@ import {UiService} from '../../services/ui.service';
 })
 export class OngoingTasksComponent implements OnInit{
   checked = false;
-  onGoingTasks: any = [] ;
+  onGoingTasks: any = [];
   loadingState = false;
-  display = true;
+ id = 0;
   constructor(
     private taskService: TaskService,
     private uiService: UiService
@@ -108,11 +106,16 @@ export class OngoingTasksComponent implements OnInit{
     this.taskService.onGoingSubject.subscribe(
       (tasks: any) => {
         this.onGoingTasks = tasks;
+        console.log(this.onGoingTasks);
       }
     );
   }
   delete(taskId: any): void {
     const value = 2;
     this.taskService.delete(taskId, value);
+  }
+  markOnCompleted(id: any): void{
+    this.id = id;
+    this.taskService.markCompleted(id);
   }
 }

@@ -54,8 +54,10 @@ import {AuthService} from '../../services/auth.service';
             </div>
           </div>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <a >Logout</a>
+            <button
+              (click)="logout()"
+              mat-menu-item>
+              <a>Logout</a>
             </button>
           </mat-menu>
         </mat-toolbar>

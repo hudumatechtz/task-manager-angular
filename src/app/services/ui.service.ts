@@ -11,7 +11,7 @@ export class UiService {
   constructor(private snackbar: MatSnackBar) {
   }
 
-  showSnackbar(message: any = 'ERROR OCCURRED THE REQUEST FAILED, RETRY AGAIN', action = 'Ok!', duration = 4000): void
+  showSnackbar(message = '', action = 'Ok!', duration = 4000): void
   {
     this.snackbar.open(message.toUpperCase(), action, {
       duration,

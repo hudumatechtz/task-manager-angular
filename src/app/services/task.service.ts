@@ -73,15 +73,27 @@ export class TaskService {
             return this.uiService.showSnackbar(result.message);
           }
           this.uiService.showSnackbar(result.message);
-          this.tasksSubject.next(result.tasks);
-          console.log(result.tasks);
+          const userTasks = [];
+          let status = '';
+          result.tasks.forEach((task: any) => {
+            if (task.onGoing){
+              status = 'OnGoing';
+            }else if (task.completed){
+              status = 'Completed';
+            }else if (task.newTask){
+              status = 'On Queue';
+            }
+            const modifiedTask = {task, status};
+            userTasks.push(modifiedTask);
+          });
+          this.tasksSubject.next(userTasks);
         },
         error => {
           console.log(error);
           this.uiService.loadingStateChanged.next(false);
           error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
         }
-      )
+      );
   }
 }
 

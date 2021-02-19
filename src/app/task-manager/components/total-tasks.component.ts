@@ -11,15 +11,19 @@ import {UiService} from '../../services/ui.service';
         <thead>
         <tr>
           <th style="width: 10%">S/N</th>
-          <th style="width: 80%">Tasks</th>
-          <th style="width: 10%">Edit</th>
+          <th style="width: 65%">Task</th>
+          <th style="width: 15%">Status</th>
+          <th style="width: 10%">Edit Or Delete</th>
         </tr>
         </thead>
-        <tbody *ngFor="let task of tasks">
+        <tbody *ngFor="let task of tasks; let i = index">
         <tr>
-          <td>{{task.sn}}</td>
+          <td>{{++i}}</td>
           <td class="task" style="cursor: pointer">
-            <span>{{task.task}}</span>
+            <span>{{task.task.task}}</span>
+          </td>
+          <td class="task" style="cursor: pointer">
+            <span>{{task.status}}</span>
           </td>
           <td class="edit-buttons" style="position: relative">
             <div fxLayout="row" style="position: absolute; top: 50%; transform: translateY(-50%)">
@@ -56,18 +60,23 @@ import {UiService} from '../../services/ui.service';
   `]
 })
 export class TotalTasksComponent implements OnInit{
-  task = '';
-  tasks = [
-    {
-      sn: 1,
-      task: 'I will do programming',
-    }
-  ];
+  tasks = [{task : {task : ''},  status: ''}];
+  loadingState = false;
   constructor(
     private uiService: UiService,
     private taskService: TaskService,
   ) {}
   ngOnInit(): void{
     this.taskService.getTasks();
+    this.uiService.loadingStateChanged.subscribe(
+      loadState => {
+        this.loadingState = loadState;
+    }
+    );
+    this.taskService.tasksSubject.subscribe(
+      (tasks: any) => {
+        this.tasks = tasks;
+      }
+    );
   }
 }

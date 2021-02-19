@@ -87,6 +87,7 @@ export class AuthService {
     this.uiService.loadingStateChanged.next(false);
     this.userSubject.next(null);
     localStorage.removeItem('userData');
+    this.uiService.showSnackbar('LOGOUT WAS SUCCESSFULLY');
     return this.router.navigate(['/']);
   }
 }

@@ -27,7 +27,7 @@ import {AuthService} from '../../services/auth.service';
           </a>
           <a mat-list-item routerLink="/user/account" routerLinkActive="active">
             <mat-icon matListIcon>account_circle</mat-icon>
-            Tasks
+            Account
           </a>
         </mat-nav-list>
       </mat-sidenav>

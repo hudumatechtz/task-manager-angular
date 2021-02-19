@@ -4,7 +4,15 @@ import {Component} from '@angular/core';
   selector: 'app-ongoing-tasks',
   template: `
     <section style="padding: 10px">
-      <h3>On Going Tasks</h3>
+      <div style="display: flex; margin-bottom: 10px">
+        <h3>On Going Tasks</h3>
+        <div class="tasks-button" style="margin-left: auto">
+          <button routerLink="/user/tasks" mat-raised-button>All</button>
+          <button routerLink="/user/tasks/queued-tasks" mat-raised-button>Queue</button>
+          <button routerLink="/user/tasks/ongoing-tasks" mat-raised-button>On Going</button>
+          <button routerLink="/user/tasks/completed-tasks" mat-raised-button>Completed</button>
+        </div>
+      </div>
       <table class="table table-bordered" style="width: 100%">
         <thead>
         <tr>
@@ -15,14 +23,18 @@ import {Component} from '@angular/core';
         </thead>
         <tbody *ngFor="let onGoingTask of onGoingTasks">
         <tr>
-          <td>{{onGoingTask.sn}}</td>
-          <td class="task" style="cursor: pointer">
+          <td style="position: relative">
+            <div fxLayout="row" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+              {{onGoingTask.sn}}
+            </div>
+          </td>
+          <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
             <div fxLayout="column">
               <div style="margin-bottom: 10px">
                 {{onGoingTask.task}}
               </div>
               <div fxLayout="row">
-                <a mat-raised-button>Mark Complete</a>
+                <mat-checkbox [(ngModel)]="checked">Mark Complete</mat-checkbox>
               </div>
             </div>
           </td>
@@ -65,6 +77,7 @@ import {Component} from '@angular/core';
 })
 export class OngoingTasksComponent {
   onGoingTask = '';
+  checked = false;
   onGoingTasks = [
     {
       sn: 1,

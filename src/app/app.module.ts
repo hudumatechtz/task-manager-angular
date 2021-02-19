@@ -26,10 +26,12 @@ import {QueuedTasksComponent} from './task-manager/components/queued-tasks.compo
 import {OngoingTasksComponent} from './task-manager/components/ongoing-tasks.component';
 import {TotalTasksComponent} from './task-manager/components/total-tasks.component';
 import {HttpClientModule} from '@angular/common/http';
-import {TaskComponent} from './task-manager/components/task.component';
+import {TasksComponent} from './task-manager/components/tasks.component';
 import {TaskManagerComponent} from './task-manager/components/task-manager.component';
 import {TaskFormComponent} from './task-manager/components/task-form.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {TaskComponent} from './task-manager/components/task.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,10 @@ import {MatMenuModule} from '@angular/material/menu';
     QueuedTasksComponent,
     OngoingTasksComponent,
     TotalTasksComponent,
-    TaskComponent,
+    TasksComponent,
     TaskManagerComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    TaskComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +68,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatListModule,
     MatCardModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

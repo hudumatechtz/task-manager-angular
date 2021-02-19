@@ -3,13 +3,11 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'app-task',
   template: `
-    <section style="padding: 10px">
-      Task
-    </section>
+    <router-outlet></router-outlet>
   `,
   styles: [``]
 })
-export class TaskComponent {
+export class TasksComponent {
   constructor() {
   }
 }

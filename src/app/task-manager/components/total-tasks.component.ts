@@ -6,7 +6,15 @@ import {UiService} from '../../services/ui.service';
   selector: 'app-total-tasks',
   template: `
     <section style="padding: 10px">
-      <h3>All Tasks</h3>
+      <div style="display: flex; margin-bottom: 10px">
+        <h3>All Tasks</h3>
+        <div class="tasks-button" style="margin-left: auto">
+          <button routerLink="/user/tasks" mat-raised-button>All</button>
+          <button routerLink="/user/tasks/queued-tasks" mat-raised-button>Queue</button>
+          <button routerLink="/user/tasks/ongoing-tasks" mat-raised-button>On Going</button>
+          <button routerLink="/user/tasks/completed-tasks" mat-raised-button>Completed</button>
+        </div>
+      </div>
       <table class="table table-bordered" style="width: 100%">
         <thead>
         <tr>
@@ -18,7 +26,7 @@ import {UiService} from '../../services/ui.service';
         <tbody *ngFor="let task of tasks">
         <tr>
           <td>{{task.sn}}</td>
-          <td class="task" style="cursor: pointer">
+          <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
             <span>{{task.task}}</span>
           </td>
           <td class="edit-buttons" style="position: relative">

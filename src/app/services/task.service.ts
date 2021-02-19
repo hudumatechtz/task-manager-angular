@@ -165,7 +165,6 @@ export class TaskService {
     this.http.delete(this.url + `/delete/${taskId}`, options)
       .subscribe(
         (response: any) => {
-          this.getQueue();
           // tslint:disable-next-line:triple-equals
           if (value == 1){
             this.getQueue();
@@ -187,13 +186,25 @@ export class TaskService {
         }
       );
   }
-  markOnGoing(id: any): void{
+  markOnGoing(id: any,  value?): void{
     const options = this.getOptions();
     this.http.post(this.url + '/mark-going', {
       id
   }, options)
       .subscribe(
         (response: any) => {
+          // tslint:disable-next-line:triple-equals
+          if (value == 1){
+            this.getQueue();
+          }
+          // tslint:disable-next-line:triple-equals
+          if (value == 2){
+            this.getOnGoing();
+          }
+          // tslint:disable-next-line:triple-equals
+          if (value == 3){
+            this.getCompleted();
+          }
           this.uiService.showSnackbar(response.message);
         },
           error => {
@@ -203,13 +214,25 @@ export class TaskService {
         }
       );
   }
-  markCompleted(id: any): void{
+  markCompleted(id: any, value?): void{
     const options = this.getOptions();
     this.http.post(this.url + '/mark-complete', {
       id
     }, options)
       .subscribe(
         (response: any) => {
+          // tslint:disable-next-line:triple-equals
+          if (value == 1){
+            this.getQueue();
+          }
+          // tslint:disable-next-line:triple-equals
+          if (value == 2){
+            this.getOnGoing();
+          }
+          // tslint:disable-next-line:triple-equals
+          if (value == 3){
+            this.getCompleted();
+          }
           this.uiService.showSnackbar(response.message);
         },
         error => {

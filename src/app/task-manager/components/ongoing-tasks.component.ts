@@ -39,7 +39,7 @@ import {UiService} from '../../services/ui.service';
                 {{onGoingTask.task}}
               </div>
               <div fxLayout="row">
-                <mat-checkbox [(ngModel)]="checked" (click)="markOnCompleted(onGoingTask.id)"
+                <mat-checkbox (click)="markOnCompleted(onGoingTask.id)"
                 >Mark Complete</mat-checkbox>
               </div>
             </div>
@@ -118,6 +118,7 @@ export class OngoingTasksComponent implements OnInit{
   }
   markOnCompleted(id: any): void{
     this.id = id;
-    this.taskService.markCompleted(id);
+    const value = 2;
+    this.taskService.markCompleted(id, value);
   }
 }

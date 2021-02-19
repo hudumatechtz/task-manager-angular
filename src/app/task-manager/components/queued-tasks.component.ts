@@ -35,7 +35,7 @@ import {UiService} from '../../services/ui.service';
                 {{queuedTask.task}}
               </div>
               <div fxLayout="row">
-                <mat-checkbox [(ngModel)]="checked" (click)="markOnGoing(queuedTask.id)"
+                <mat-checkbox (click)="markOnGoing(queuedTask.id)"
                 >Mark On Going</mat-checkbox>
               </div>
             </div>
@@ -109,6 +109,7 @@ export class QueuedTasksComponent implements OnInit{
   }
   markOnGoing(id: any): void{
       this.id = id;
-      this.taskService.markOnGoing(id);
+      const value = 1;
+      this.taskService.markOnGoing(id, value);
   }
 }

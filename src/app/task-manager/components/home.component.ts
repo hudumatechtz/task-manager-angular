@@ -53,7 +53,7 @@ import {map, shareReplay} from 'rxjs/operators';
         <router-outlet></router-outlet>
         <div style="position: absolute; bottom: 50px; right: 50px; background: var(--color-theme);
          color: var(--light-theme); border-radius: 50%; height: 70px; width: 70px">
-          <a routerLink="/user/add-task" mat-icon-button>
+          <a routerLink="/user/tasks/add-task" mat-icon-button>
             <mat-icon style="margin-top: 23px; font-size: 40px; margin-right: 15px">add</mat-icon>
           </a>
         </div>

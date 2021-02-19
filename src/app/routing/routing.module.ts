@@ -19,10 +19,10 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: '/user/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
-      {path: 'add-task', component: TaskFormComponent},
       {path: 'tasks', component: TaskComponent,
         children: [
           {path: '', redirectTo: 'total-tasks', pathMatch: 'full'},
+          {path: 'add-task', component: TaskFormComponent},
           {path: 'total-tasks', component: TotalTasksComponent},
           {path: 'ongoing-tasks', component: OngoingTasksComponent},
           {path: 'queued-tasks', component: QueuedTasksComponent},

@@ -29,7 +29,7 @@ import {UiService} from '../../services/ui.service';
         <tbody *ngFor="let completedTask of completedTasks">
         <tr>
           <td>{{completedTask.sn}}</td>
-          <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
+          <td class="task" style="cursor: pointer">
             <span>{{completedTask.task}}</span>
           </td>
           <td class="edit-buttons" style="position: relative">

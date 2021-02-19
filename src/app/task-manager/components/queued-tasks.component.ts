@@ -29,7 +29,7 @@ import {UiService} from '../../services/ui.service';
         <tbody *ngFor="let queuedTask of queuedTasks; let i = index">
         <tr>
           <td>{{ 1+i}}</td>
-          <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
+          <td class="task" style="cursor: pointer">
             <div fxLayout="column">
               <div style="margin-bottom: 10px">
                 {{queuedTask.task}}
@@ -58,7 +58,8 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </tbody>
       </table>
-      <div *ngIf="!loadingState && queuedTasks.length <= 0" fxLayoutAlign="center">
+      <div *ngIf="!loadingState && queuedTasks.length <= 0" fxLayoutAlign="center"
+           style="border: 1px solid #D3D3D3; border-top: none; padding: 10px">
         <p>No Task on Queue</p>
       </div>
     </section>

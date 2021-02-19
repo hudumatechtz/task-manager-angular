@@ -33,7 +33,7 @@ import {UiService} from '../../services/ui.service';
               {{ 1+ i}}
             </div>
           </td>
-          <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
+          <td class="task" style="cursor: pointer">
             <div fxLayout="column">
               <div style="margin-bottom: 10px">
                 {{onGoingTask.task}}
@@ -62,7 +62,8 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </tbody>
       </table>
-      <div *ngIf="!loadingState && onGoingTasks.length <= 0" fxLayoutAlign="center">
+      <div *ngIf="!loadingState && onGoingTasks.length <= 0" fxLayoutAlign="center"
+           style="border: 1px solid #D3D3D3; border-top: none; padding: 10px">
         <p>No Task is OnGoing</p>
       </div>
     </section>

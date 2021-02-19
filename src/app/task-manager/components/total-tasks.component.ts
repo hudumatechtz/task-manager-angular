@@ -30,7 +30,7 @@ import {UiService} from '../../services/ui.service';
         <tbody *ngFor="let task of tasks; let i = index">
         <tr>
           <td>{{1+i}}</td>
-          <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
+          <td class="task" style="cursor: pointer">
             <span>{{task.task.task}}</span>
           </td>
           <td class="task" style="cursor: pointer">
@@ -52,6 +52,10 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </tbody>
       </table>
+      <div *ngIf="!loadingState && tasks.length <= 0" fxLayoutAlign="center"
+           style="border: 1px solid #D3D3D3; border-top: none; padding: 10px">
+        <p>No Tasks Was Found</p>
+      </div>
     </section>
   `,
   styles: [`

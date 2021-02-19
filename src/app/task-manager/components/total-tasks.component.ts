@@ -43,7 +43,7 @@ import {UiService} from '../../services/ui.service';
                 </a>
               </div>
               <div style="background: var(--danger-theme); border-radius: 4px; color: var(--light-theme)">
-                <a mat-icon-button>
+                <a mat-icon-button (click)="delete(task.task.id)">
                   <mat-icon>delete</mat-icon>
                 </a>
               </div>
@@ -74,8 +74,9 @@ import {UiService} from '../../services/ui.service';
   `]
 })
 export class TotalTasksComponent implements OnInit{
-  tasks = [{task : {task : ''},  status: ''}];
+  tasks: any = [{task : {task : ''},  status: ''}];
   loadingState = false;
+  id = 0;
   constructor(
     private uiService: UiService,
     private taskService: TaskService,
@@ -92,5 +93,11 @@ export class TotalTasksComponent implements OnInit{
         this.tasks = tasks;
       }
     );
+  }
+  delete(taskId: any): void {
+    const value = 4;
+    this.id = taskId;
+    this.taskService.delete(taskId, value);
+    // console.log(taskId);
   }
 }

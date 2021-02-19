@@ -177,6 +177,10 @@ export class TaskService {
           if (value == 3){
             this.getCompleted();
           }
+          // tslint:disable-next-line:triple-equals
+          if (value == 4){
+            this.getTasks();
+          }
           return this.uiService.showSnackbar(response.message);
         },
         error => {

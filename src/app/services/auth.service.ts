@@ -13,16 +13,17 @@ export interface Auth {
 export class AuthService {
   url = 'http://localhost:5000/account';
   serverMessage = 'Internal Server Error, Status Code 500';
+  useSubject = new Subject();
   userSubject = new BehaviorSubject<any>(null);
-  // getOptions(): object{
-  //   const {token}  = JSON.parse(localStorage.getItem('shopData')) ?
-  //     JSON.parse(localStorage.getItem('shopData')) : '';
-  //   return {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   };
-  // }
+  getOptions(): object{
+    const {token}  = JSON.parse(localStorage.getItem('userData')) ?
+      JSON.parse(localStorage.getItem('userData')) : '';
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+  }
   constructor(
     private uiService: UiService,
     private router: Router,
@@ -89,5 +90,27 @@ export class AuthService {
     localStorage.removeItem('userData');
     this.uiService.showSnackbar('LOGOUT WAS SUCCESSFULLY');
     return this.router.navigate(['/']);
+  }
+  updateUser(username: string): void
+  {
+    this.uiService.loadingStateChanged.next(true);
+    const options = this.getOptions();
+    this.http.post(this.url + '/update-user', {
+      username
+    }, options).subscribe(
+      (response: any) => {
+        this.uiService.loadingStateChanged.next(false);
+        const user = JSON.parse(localStorage.getItem('userData'));
+        user.username = response.username;
+        localStorage.setItem('userData', JSON.stringify(user));
+        this.uiService.showSnackbar(response.message);
+        return this.router.navigate(['../user']);
+      },
+      error => {
+        this.uiService.loadingStateChanged.next(false);
+        error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        console.log(error);
+      }
+    );
   }
 }

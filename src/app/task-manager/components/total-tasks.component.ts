@@ -15,7 +15,10 @@ import {UiService} from '../../services/ui.service';
           <button routerLink="/user/tasks/completed-tasks" mat-raised-button>Completed</button>
         </div>
       </div>
-      <table class="table table-bordered" style="width: 100%">
+      <div *ngIf="loadingState" fxLayoutAlign="center">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <table class="table table-bordered" style="width: 100%" *ngIf="!loadingState">
         <thead>
         <tr>
           <th style="width: 10%">S/N</th>
@@ -26,7 +29,7 @@ import {UiService} from '../../services/ui.service';
         </thead>
         <tbody *ngFor="let task of tasks; let i = index">
         <tr>
-          <td>{{++i}}</td>
+          <td>{{1+i}}</td>
           <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
             <span>{{task.task.task}}</span>
           </td>

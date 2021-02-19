@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TaskService} from '../../services/task.service';
+import {UiService} from '../../services/ui.service';
 
 @Component({
   selector: 'app-completed-tasks',
@@ -13,12 +15,15 @@ import {Component} from '@angular/core';
           <button routerLink="/user/tasks/completed-tasks" mat-raised-button>Completed</button>
         </div>
       </div>
-      <table class="table table-bordered" style="width: 100%">
+      <div *ngIf="loadingState" fxLayoutAlign="center">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <table class="table table-bordered" style="width: 100%" *ngIf="!loadingState">
         <thead>
         <tr>
           <th style="width: 10%">S/N</th>
           <th style="width: 80%">Tasks</th>
-          <th style="width: 10%">Actions</th>
+          <th style="width: 10%">Action</th>
         </tr>
         </thead>
         <tbody *ngFor="let completedTask of completedTasks">
@@ -44,6 +49,9 @@ import {Component} from '@angular/core';
         </tr>
         </tbody>
       </table>
+      <div *ngIf="!loadingState && completedTasks.length <= 0" fxLayoutAlign="center">
+        <p>No Task Completed</p>
+      </div>
     </section>
   `,
   styles: [`
@@ -61,14 +69,26 @@ import {Component} from '@angular/core';
     }
   `]
 })
-export class CompletedTasksComponent {
-  completedTask = '';
-  completedTasks = [
-    {
-      sn: 1,
-      task: 'I will do programming',
-    }
-  ];
-  constructor() {
+export class CompletedTasksComponent implements OnInit{
+  completedTasks = [];
+  loadingState = false;
+  constructor(
+    private taskService: TaskService,
+    private uiService: UiService
+  ) {
   }
+  ngOnInit(): void{
+    this.uiService.loadingStateChanged.subscribe(
+      loadState => {
+        this.loadingState = loadState;
+      }
+    );
+    this.taskService.getCompleted();
+    this.taskService.onCompletedSubject.subscribe(
+      (tasks: any) => {
+        this.completedTasks = tasks;
+        console.log(this.completedTasks);
+      }
+    );
+}
 }

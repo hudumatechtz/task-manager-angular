@@ -100,9 +100,11 @@ export class TaskService {
   }
   getOnGoing(): void{
     const options = this.getOptions();
+    this.uiService.loadingStateChanged.next(true);
     this.http.get(this.url + '/ongoing', options)
       .subscribe(
         (response: any) => {
+          this.uiService.loadingStateChanged.next(false);
           if (!response){
             return this.uiService.showSnackbar(response.message);
           }
@@ -174,6 +176,38 @@ export class TaskService {
             this.getCompleted();
           }
           return this.uiService.showSnackbar(response.message);
+        },
+        error => {
+          console.log(error);
+          this.uiService.loadingStateChanged.next(false);
+          error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        }
+      );
+  }
+  markOnGoing(id: any): void{
+    const options = this.getOptions();
+    this.http.post(this.url + '/mark-going', {
+      id
+  }, options)
+      .subscribe(
+        (response: any) => {
+          this.uiService.showSnackbar(response.message);
+        },
+          error => {
+            console.log(error);
+            this.uiService.loadingStateChanged.next(false);
+            error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        }
+      );
+  }
+  markCompleted(id: any): void{
+    const options = this.getOptions();
+    this.http.post(this.url + '/mark-complete', {
+      id
+    }, options)
+      .subscribe(
+        (response: any) => {
+          this.uiService.showSnackbar(response.message);
         },
         error => {
           console.log(error);

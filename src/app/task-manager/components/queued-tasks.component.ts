@@ -27,7 +27,7 @@ import {UiService} from '../../services/ui.service';
         </tr>
         </thead>
         <tbody *ngFor="let queuedTask of queuedTasks; let i = index">
-        <tr [ngClass]="{'hide': id === queuedTask.id}">
+        <tr>
           <td>{{ 1+i}}</td>
           <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
             <div fxLayout="column">
@@ -35,7 +35,9 @@ import {UiService} from '../../services/ui.service';
                 {{queuedTask.task}}
               </div>
               <div fxLayout="row">
-                <mat-checkbox [(ngModel)]="checked">Mark On Going</mat-checkbox>
+                <mat-checkbox [(ngModel)]="checked" (click)="markOnGoing(queuedTask.id)"
+                              [ngClass]="{'hide': id === queuedTask.id}"
+                >Mark On Going</mat-checkbox>
               </div>
             </div>
           </td>
@@ -104,5 +106,9 @@ export class QueuedTasksComponent implements OnInit{
   delete(id: any): void{
     const value = 1;
     this.taskService.delete(id, value);
+  }
+  markOnGoing(id: any): void{
+      this.id = id;
+      this.taskService.markOnGoing(id);
   }
 }

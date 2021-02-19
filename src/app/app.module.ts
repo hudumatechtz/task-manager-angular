@@ -29,6 +29,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {TaskComponent} from './task-manager/components/task.component';
 import {TaskManagerComponent} from './task-manager/components/task-manager.component';
 import {TaskFormComponent} from './task-manager/components/task-form.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {TaskFormComponent} from './task-manager/components/task-form.component';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

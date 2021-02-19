@@ -17,6 +17,10 @@ body {
 .color-theme {
   color: var(--color-theme);
 }
+a {
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
 mat-icon {
   vertical-align: middle;
 }

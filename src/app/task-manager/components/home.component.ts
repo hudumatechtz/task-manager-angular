@@ -46,10 +46,18 @@ import {AuthService} from '../../services/auth.service';
               Task Manager System
             </div>
           </div>
-          <div style="margin-left: auto; color: white">
-            <span>{{username}}</span>
-            <mat-icon>account_circle</mat-icon>
+          <div class="user" style="margin-left: auto; color: white; cursor: pointer; padding: 10px" fxLayout="row"
+               [matMenuTriggerFor]="menu">
+            <div style="margin-right: 10px">{{username}}</div>
+            <div>
+              <mat-icon style="margin-bottom: 5px">account_circle</mat-icon>
+            </div>
           </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <a >Logout</a>
+            </button>
+          </mat-menu>
         </mat-toolbar>
         <router-outlet></router-outlet>
         <div style="position: absolute; bottom: 50px; right: 50px; background: var(--color-theme);
@@ -110,6 +118,9 @@ import {AuthService} from '../../services/auth.service';
       color: var(--light-theme);
       border-top-right-radius: 30px;
       border-bottom-right-radius: 30px;
+    }
+    .user:hover {
+      background: #241571;
     }
   `]
 })

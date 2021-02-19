@@ -9,7 +9,7 @@ import {TaskService} from '../../services/task.service';
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
-            <mat-card routerLink="/user/tasks/total-tasks" fxLayout="column" fxLayoutAlign="center center">
+            <mat-card routerLink="/user/tasks" fxLayout="column" fxLayoutAlign="center center">
               <mat-spinner color="primary" *ngIf="loadingState"></mat-spinner>
               <h3 *ngIf="!loadingState">
                 {{ totalTasks }}

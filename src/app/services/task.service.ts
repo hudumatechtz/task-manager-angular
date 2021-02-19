@@ -65,7 +65,7 @@ export class TaskService {
   getTasks(): void{
     this.uiService.loadingStateChanged.next(true);
     const options = this.getOptions();
-    this.http.get('/tasks', options)
+    this.http.get(this.url + '/tasks', options)
       .subscribe(
         (result: any) => {
           this.uiService.loadingStateChanged.next(false);

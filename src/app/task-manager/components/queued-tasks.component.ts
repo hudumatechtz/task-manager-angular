@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TaskService} from '../../services/task.service';
+import {UiService} from '../../services/ui.service';
 
 @Component({
   selector: 'app-queued-tasks',
@@ -13,17 +15,20 @@ import {Component} from '@angular/core';
           <button routerLink="/user/tasks/completed-tasks" mat-raised-button>Completed</button>
         </div>
       </div>
-      <table class="table table-bordered" style="width: 100%">
+      <div *ngIf="loadingState" fxLayoutAlign="center">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <table class="table table-bordered" style="width: 100%" *ngIf="!loadingState">>
         <thead>
         <tr>
           <th style="width: 10%">S/N</th>
           <th style="width: 80%">Tasks</th>
-          <th style="width: 10%">Edit</th>
+          <th style="width: 10%">Action</th>
         </tr>
         </thead>
-        <tbody *ngFor="let queuedTask of queuedTasks">
+        <tbody *ngFor="let queuedTask of queuedTasks; let i = index">
         <tr>
-          <td>{{queuedTask.sn}}</td>
+          <td>{{ 1+i}}</td>
           <td routerLink="/user/tasks/task" class="task" style="cursor: pointer">
             <div fxLayout="column">
               <div style="margin-bottom: 10px">
@@ -51,6 +56,9 @@ import {Component} from '@angular/core';
         </tr>
         </tbody>
       </table>
+      <div *ngIf="!loadingState && queuedTasks.length <= 0" fxLayoutAlign="center">
+        <p>No Task on Queue</p>
+      </div>
     </section>
   `,
   styles: [`
@@ -68,15 +76,30 @@ import {Component} from '@angular/core';
     }
   `]
 })
-export class QueuedTasksComponent {
-  queuedTask = '';
+export class QueuedTasksComponent implements OnInit{
   checked = false;
   queuedTasks = [
     {
-      sn: 1,
       task: 'I will do programming',
     }
   ];
-  constructor() {
-  }
+    loadingState = false;
+    constructor(
+      private taskService: TaskService,
+      private uiService: UiService
+  ) {
+    }
+    ngOnInit(): void{
+      this.uiService.loadingStateChanged.subscribe(
+        loadState => {
+          this.loadingState = loadState;
+        }
+      );
+      this.taskService.getQueue();
+      this.taskService.onQueueSubject.subscribe(
+        (tasks: any) => {
+          this.queuedTasks = tasks;
+        }
+      );
+    }
 }

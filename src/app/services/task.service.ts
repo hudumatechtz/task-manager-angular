@@ -10,6 +10,9 @@ export class TaskService {
   }
   dashBoardTasks = new Subject();
   serverMessage = 'Internal server error, 500';
+  onGoingSubject = new Subject();
+  onQueueSubject = new Subject();
+  onCompletedSubject = new Subject();
   url = 'http://localhost:5000';
   tasksSubject = new BehaviorSubject<any>(null);
   getOptions(): object{
@@ -43,7 +46,7 @@ export class TaskService {
 
   addTask(task: string): void {
     const options = this.getOptions();
-    this.uiService.loadingStateChanged.next(true)
+    this.uiService.loadingStateChanged.next(true);
     this.http.post(this.url + '/create-task', {
       task
     }, options)
@@ -95,5 +98,62 @@ export class TaskService {
         }
       );
   }
+  getOnGoing(): void{
+    const options = this.getOptions();
+    this.http.get(this.url + '/ongoing', options)
+      .subscribe(
+        (response: any) => {
+          if (!response){
+            return this.uiService.showSnackbar(response.message);
+          }
+          this.onGoingSubject.next(response.onGoing);
+          this.uiService.showSnackbar(response.message);
+        },
+        error => {
+          console.log(error);
+          this.uiService.loadingStateChanged.next(false);
+          error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        }
+      );
+  }
+  getQueue(): void{
+    const options = this.getOptions();
+    this.uiService.loadingStateChanged.next(true);
+    this.http.get(this.url + '/new-task', options)
+      .subscribe(
+        (response: any) => {
+          this.uiService.loadingStateChanged.next(false);
+          if (!response){
+            return this.uiService.showSnackbar(response.message);
+          }
+          this.onQueueSubject.next(response.taskNew);
+          this.uiService.showSnackbar(response.message);
+        },
+        error => {
+          console.log(error);
+          this.uiService.loadingStateChanged.next(false);
+          error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        }
+      );
+  }
+  getCompleted(): void{
+    this.uiService.loadingStateChanged.next(true);
+    const options = this.getOptions();
+    this.http.get(this.url + '/completed', options)
+      .subscribe(
+        (response: any) => {
+          this.uiService.loadingStateChanged.next(false);
+          if (!response){
+            return this.uiService.showSnackbar(response.message);
+          }
+          this.onCompletedSubject.next(response.completed);
+          this.uiService.showSnackbar(response.message);
+        },
+        error => {
+          console.log(error);
+          this.uiService.loadingStateChanged.next(false);
+          error.error.message ? this.uiService.showSnackbar(error.error.message) : this.uiService.showSnackbar(this.serverMessage);
+        }
+      );
+  }
 }
-

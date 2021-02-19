@@ -11,6 +11,7 @@ import {QueuedTasksComponent} from '../task-manager/components/queued-tasks.comp
 import {CompletedTasksComponent} from '../task-manager/components/completed-tasks.component';
 import {TaskComponent} from '../task-manager/components/task.component';
 import {TaskManagerComponent} from '../task-manager/components/task-manager.component';
+import {TaskFormComponent} from '../task-manager/components/task-form.component';
 
 const routes: Routes = [
   {path: '', component: TaskManagerComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: '/user/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
+      {path: 'add-task', component: TaskFormComponent},
       {path: 'tasks', component: TaskComponent,
         children: [
           {path: '', redirectTo: 'total-tasks', pathMatch: 'full'},

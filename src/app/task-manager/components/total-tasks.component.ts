@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-total-tasks',
   template: `
     <section style="padding: 10px">
-      <h3>Total Tasks</h3>
+      <h3>All Tasks</h3>
       <table class="table table-bordered" style="width: 100%">
         <thead>
         <tr>
@@ -13,15 +13,15 @@ import {Component} from '@angular/core';
           <th style="width: 10%">Edit</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let task of tasks">
         <tr>
-          <td>1</td>
+          <td>{{task.sn}}</td>
           <td class="task" style="cursor: pointer">
             <span>
-              I will program Tomorrow at Night, I will program Tomorrow at Night, I will program Tomorrow at Night, I will program Tomorrow at Night, I will program Tomorrow at Night, I will program Tomorrow at Night
+              {{task.task}}
             </span>
           </td>
-          <td class="edit-buttons" fxLayout="row">
+          <td class="edit-buttons" fxLayout="row" style="height: auto">
             <div style="background: var(--color-theme); border-radius: 4px; color: var(--light-theme); margin-right: 10px">
               <a mat-icon-button>
                 <mat-icon>edit</mat-icon>
@@ -42,6 +42,9 @@ import {Component} from '@angular/core';
     th {
       font-size: 20px;
     }
+    td {
+      height: auto;
+    }
     .task:hover {
       background: #ffffff;
     }
@@ -51,6 +54,13 @@ import {Component} from '@angular/core';
   `]
 })
 export class TotalTasksComponent {
+  task = '';
+  tasks = [
+    {
+      sn: 1,
+      task: 'I will go to school, I will go to school, I will go to school, I will go to school, I will go to school, I will go to school, I will go to school, I will go to school',
+    }
+  ];
   constructor() {
   }
 }

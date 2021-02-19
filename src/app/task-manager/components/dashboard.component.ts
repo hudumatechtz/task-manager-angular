@@ -11,7 +11,7 @@ import {Component, OnInit} from '@angular/core';
               <h3>40</h3>
               <div>
                 <mat-icon>article</mat-icon>
-                Total Tasks
+                All Tasks
               </div>
             </mat-card>
           </div>
@@ -20,7 +20,7 @@ import {Component, OnInit} from '@angular/core';
               <h3>40</h3>
               <div>
                 <mat-icon style="">queue</mat-icon>
-                <span style="">Task on Queue</span>
+                <span style="">Queued Tasks</span>
               </div>
             </mat-card>
           </div>

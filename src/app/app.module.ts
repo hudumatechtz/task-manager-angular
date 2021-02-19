@@ -28,6 +28,7 @@ import {TotalTasksComponent} from './task-manager/components/total-tasks.compone
 import {HttpClientModule} from '@angular/common/http';
 import {TaskComponent} from './task-manager/components/task.component';
 import {TaskManagerComponent} from './task-manager/components/task-manager.component';
+import {TaskFormComponent} from './task-manager/components/task-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {TaskManagerComponent} from './task-manager/components/task-manager.compo
     OngoingTasksComponent,
     TotalTasksComponent,
     TaskComponent,
-    TaskManagerComponent
+    TaskManagerComponent,
+    TaskFormComponent
   ],
   imports: [
     CommonModule,

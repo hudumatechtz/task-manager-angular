@@ -10,8 +10,11 @@ import {TaskService} from '../../services/task.service';
         <div class="row">
           <div class="col-md-6">
             <mat-card routerLink="/user/tasks/total-tasks" fxLayout="column" fxLayoutAlign="center center">
-              <h3>{{ totalTasks }}</h3>
-              <div>
+              <mat-spinner color="primary" *ngIf="loadingState"></mat-spinner>
+              <h3 *ngIf="!loadingState">
+                {{ totalTasks }}
+              </h3>
+              <div *ngIf="!loadingState">
                 <mat-icon>article</mat-icon>
                 All Tasks
               </div>
